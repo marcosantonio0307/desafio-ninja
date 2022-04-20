@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+  app:
+    container_name: desafio_ninja_app
+    build: .
+    stdin_open: true
+    tty: true
+    ports:
+      - 3000:3000
+    working_dir: /desafio-ninja
+    volumes:
+      - .:/desafio-ninja
+    depends_on:
+      - db
+    command: >
+        bash -c "rails db:create
+        && rails s -b 0.0.0.0"
+
+  db:
+    container_name: desafio_ninja_db
+    image: postgres
+    restart: always
+    hostname: postgres
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
