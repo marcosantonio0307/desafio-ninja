@@ -1,0 +1,39 @@
+require: rubocop-rails
+AllCops:
+  TargetRubyVersion: 2.7.2
+  Exclude:
+    - 'lib/tasks/**/*'
+    - 'bin/**/*'
+    - 'setup-dev'
+    - 'db/**/*'
+    - 'config/environments/**'
+    - 'config/puma.rb'
+
+Metrics/BlockLength:
+  ignoredMethods: ['describe', 'context', 'feature', 'scenario', 'let']
+
+Metrics/MethodLength:
+  Max: 20
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'
+
+Style/Documentation:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Exclude:
+    - 'bin/bundle'
+
+Layout/LineLength:
+  Max: 120
+
+Layout/EndOfLine:
+  Exclude:
+    - 'app/controllers/application_controller.rb'
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
