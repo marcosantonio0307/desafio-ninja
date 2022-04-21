@@ -13,7 +13,7 @@ services:
     depends_on:
       - db
     command: >
-        bash -c "rails db:create db:migrate
+        bash -c "rails db:create db:migrate db:seed
         && rails s -b 0.0.0.0"
 
   db:

@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_20_214251) do
+ActiveRecord::Schema.define(version: 2022_04_21_143110) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bookings", force: :cascade do |t|
+    t.bigint "room_id", null: false
+    t.string "owner"
+    t.date "booking_day"
+    t.integer "schedule_starting"
+    t.integer "schedule_ending"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["room_id"], name: "index_bookings_on_room_id"
+  end
 
   create_table "rooms", force: :cascade do |t|
     t.string "name"
@@ -21,4 +32,5 @@ ActiveRecord::Schema.define(version: 2022_04_20_214251) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  add_foreign_key "bookings", "rooms"
 end
