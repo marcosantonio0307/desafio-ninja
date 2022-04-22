@@ -5,7 +5,7 @@ RSpec.describe Booking, type: :model do
     let(:room) { Room.create(name: 'Sala Exemplo') }
     context 'retorna sucesso' do
       it 'quando os parâmetros são informados' do
-        booking = Booking.new(room_id: room.id, owner: 'Marcos', booking_day: Time.zone.today,
+        booking = Booking.new(room_id: room.id, owner: 'Marcos', booking_day: '22/04/2022',
                               schedule_starting: 1000, schedule_ending: 1200)
 
         expect { booking.save! }.to change { Booking.count }.by(1)
@@ -24,7 +24,7 @@ RSpec.describe Booking, type: :model do
       end
 
       it 'quando os horários são de tipo incorreto' do
-        booking = Booking.new(room_id: room.id, owner: 'Marcos', booking_day: Time.zone.today,
+        booking = Booking.new(room_id: room.id, owner: 'Marcos', booking_day: '22/04/2022',
                               schedule_starting: '10:00', schedule_ending: '12:00')
 
         expect { booking.save! }.to raise_error(ActiveRecord::RecordInvalid)
