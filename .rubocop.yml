@@ -10,7 +10,7 @@ AllCops:
     - 'config/puma.rb'
 
 Metrics/BlockLength:
-  ignoredMethods: ['describe', 'context', 'feature', 'scenario', 'let']
+  IgnoredMethods: ['describe', 'context', 'feature', 'scenario', 'let']
 
 Metrics/MethodLength:
   Max: 20

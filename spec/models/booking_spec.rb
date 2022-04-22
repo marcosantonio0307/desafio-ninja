@@ -29,6 +29,13 @@ RSpec.describe Booking, type: :model do
 
         expect { booking.save! }.to raise_error(ActiveRecord::RecordInvalid)
       end
+
+      it 'quando o formato da data é errado' do
+        booking = Booking.new(room_id: room.id, owner: 'Marcos', booking_day: '03042022',
+                              schedule_starting: 1000, schedule_ending: 1200)
+
+        expect { booking.save! }.to raise_error(ActiveRecord::RecordInvalid)
+      end
     end
   end
 end
