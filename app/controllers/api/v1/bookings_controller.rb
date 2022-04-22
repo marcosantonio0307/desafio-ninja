@@ -25,7 +25,7 @@ class Api::V1::BookingsController < ApplicationController
 
   def destroy
     if booking.destroy!
-      render json: { success: I18n.t('deleted') }
+      render json: { success: I18n.t('activerecord.success.messages.deleted') }
     else
       render json: { errors: booking.errors.full_messages }, status: :bad_request
     end

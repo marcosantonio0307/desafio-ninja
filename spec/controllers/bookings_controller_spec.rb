@@ -257,7 +257,7 @@ RSpec.describe Api::V1::BookingsController, type: :controller do
 
         data = JSON.parse(response.body)['success']
         expect(response.status).to eq(200)
-        expect(data).to eq(I18n.t('deleted'))
+        expect(data).to eq('deleted success')
       end
     end
 

@@ -1,5 +1,8 @@
 en:
   activerecord:
+    success:
+      messages:
+        deleted: deleted success
     errors:
       messages:
         day_is_weekend: not permitted, is weekend
