@@ -1,4 +1,10 @@
 class Api::V1::BookingsController < ApplicationController
+  def index
+    find_bookings(params)
+
+    render json: { bookings: @bookings }
+  end
+
   def create
     booking = Booking.new values
 
@@ -39,5 +45,20 @@ class Api::V1::BookingsController < ApplicationController
 
   def booking
     @booking ||= Booking.find(params[:id])
+  end
+
+  def find_bookings(params)
+    room_id = params[:room_id]
+    booking_day = params[:booking_day]
+
+    @bookings = if room_id && booking_day
+                  Booking.where(room_id: room_id, booking_day: booking_day)
+                elsif room_id
+                  Booking.where(room_id: room_id)
+                elsif booking_day
+                  Booking.where(booking_day: booking_day)
+                else
+                  Booking.all
+                end
   end
 end

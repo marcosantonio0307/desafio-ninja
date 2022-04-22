@@ -1,6 +1,61 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::BookingsController, type: :controller do
+  describe 'GET index' do
+    before(:each) do
+      Room.create(name: 'teste')
+      Room.create(name: 'teste 2')
+
+      Booking.create!(
+        room_id: Room.first.id,
+        owner: 'teste',
+        booking_day: '21/04/2022',
+        schedule_starting: 1000,
+        schedule_ending: 1200
+      )
+
+      Booking.create!(
+        room_id: Room.last.id,
+        owner: 'teste 2',
+        booking_day: '22/04/2022',
+        schedule_starting: 1400,
+        schedule_ending: 1600
+      )
+    end
+
+    context 'sem parâmetros' do
+      it 'retorna todos bookings' do
+        get :index, as: :json
+
+        expect(response.status).to eq(200)
+        data = JSON.parse(response.body)
+        expect(data['bookings'].count).to eq(2)
+      end
+    end
+
+    context 'com parâmetro room_id' do
+      it 'retorna bookings apenas da Room informada' do
+        get :index, params: { room_id: Room.first.id }, as: :json
+
+        data = JSON.parse(response.body)
+        expect(data['bookings'].count).to eq(1)
+        expect(data['bookings'].first['room_id']).to eq(Room.first.id)
+        expect(data['bookings'].first['owner']).to eq('teste')
+      end
+    end
+
+    context 'com parâmetro booking_day' do
+      it 'retorna bookings apenas da Room informada' do
+        get :index, params: { booking_day: '22/04/2022' }, as: :json
+
+        data = JSON.parse(response.body)
+        expect(data['bookings'].count).to eq(1)
+        expect(data['bookings'].first['room_id']).to eq(Room.last.id)
+        expect(data['bookings'].first['owner']).to eq('teste 2')
+      end
+    end
+  end
+
   describe 'POST create' do
     before(:each) do
       Room.create(name: 'teste')
