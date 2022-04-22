@@ -2,7 +2,7 @@ class Api::V1::BookingsController < ApplicationController
   def index
     find_bookings(params)
 
-    render json: { bookings: @bookings }
+    render json: { bookings_count: @bookings.count, bookings: @bookings }
   end
 
   def create
