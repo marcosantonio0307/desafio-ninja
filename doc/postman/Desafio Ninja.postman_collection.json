@@ -9,7 +9,28 @@
 			"name": "Lista Rooms",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "access-token",
+						"value": "{{access-token}}",
+						"type": "text"
+					},
+					{
+						"key": "client",
+						"value": "{{client}}",
+						"type": "text"
+					},
+					{
+						"key": "expiry",
+						"value": "{{expiry}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "{{uid}}",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:3000/api/v1/rooms",
 					"protocol": "http",
@@ -30,7 +51,28 @@
 			"name": "Lista Bookings",
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "access-token",
+						"value": "{{access-token}}",
+						"type": "text"
+					},
+					{
+						"key": "client",
+						"value": "{{client}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "{{uid}}",
+						"type": "text"
+					},
+					{
+						"key": "expiry",
+						"value": "{{expiry}}",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:3000/api/v1/bookings",
 					"protocol": "http",
@@ -54,7 +96,28 @@
 			},
 			"request": {
 				"method": "GET",
-				"header": [],
+				"header": [
+					{
+						"key": "access-token",
+						"value": "{{access-token}}",
+						"type": "text"
+					},
+					{
+						"key": "client",
+						"value": "{{client}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "{{uid}}",
+						"type": "text"
+					},
+					{
+						"key": "expiry",
+						"value": "{{expiry}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"room_id\": 2,\n    \"booking_day\": \"22/04/2022\"\n}",
@@ -95,7 +158,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/api/v1/bookings",
+					"raw": "http://localhost:3000/api/v1/bookings?access-token={{access-token}}&client={{client}}&uid={{uid}}&expiry={{expiry}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -105,16 +168,55 @@
 						"api",
 						"v1",
 						"bookings"
+					],
+					"query": [
+						{
+							"key": "access-token",
+							"value": "{{access-token}}"
+						},
+						{
+							"key": "client",
+							"value": "{{client}}"
+						},
+						{
+							"key": "uid",
+							"value": "{{uid}}"
+						},
+						{
+							"key": "expiry",
+							"value": "{{expiry}}"
+						}
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "Atualiza Booking",
 			"request": {
 				"method": "PUT",
-				"header": [],
+				"header": [
+					{
+						"key": "access-token",
+						"value": "{{access-token}}",
+						"type": "text"
+					},
+					{
+						"key": "client",
+						"value": "{{client}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "{{uid}}",
+						"type": "text"
+					},
+					{
+						"key": "expiry",
+						"value": "{{expiry}}",
+						"type": "text"
+					}
+				],
 				"body": {
 					"mode": "raw",
 					"raw": "{\n    \"room_id\": 2,\n    \"owner\": \"Marcos\",\n    \"booking_day\": \"19/04/2022\",\n    \"schedule_starting\": 1300,\n    \"schedule_ending\": 1400\n}",
@@ -142,10 +244,31 @@
 			"response": []
 		},
 		{
-			"name": "New Request",
+			"name": "Deleta Booking",
 			"request": {
 				"method": "DELETE",
-				"header": [],
+				"header": [
+					{
+						"key": "access-token",
+						"value": "{{access-token}}",
+						"type": "text"
+					},
+					{
+						"key": "client",
+						"value": "{{client}}",
+						"type": "text"
+					},
+					{
+						"key": "uid",
+						"value": "{{uid}}",
+						"type": "text"
+					},
+					{
+						"key": "expiry",
+						"value": "{{expiry}}",
+						"type": "text"
+					}
+				],
 				"url": {
 					"raw": "http://localhost:3000/api/v1/bookings/14",
 					"protocol": "http",
@@ -162,6 +285,107 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Autentica Usuario",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"test@test.com\",\n    \"password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/auth/sign_in",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth",
+						"sign_in"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cria Usuário",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"marcos@test.com\",\n    \"password\": \"123456\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "access-token",
+			"value": "J-IROH2q2Di6l3v0GzYfyA",
+			"type": "string"
+		},
+		{
+			"key": "client",
+			"value": "SmP0_BVRWMWf_XIvHbF0MA",
+			"type": "string"
+		},
+		{
+			"key": "uid",
+			"value": "test@test.com",
+			"type": "string"
+		},
+		{
+			"key": "expiry",
+			"value": "1650732864",
+			"type": "string"
 		}
 	]
 }
