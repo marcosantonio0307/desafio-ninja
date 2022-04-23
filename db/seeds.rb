@@ -6,3 +6,5 @@ unless Room.any?
 		{name: 'Sala 4'}
 	])
 end
+
+User.create(email: 'test@test.com', password: '123456')

@@ -8,6 +8,8 @@ AllCops:
     - 'db/**/*'
     - 'config/environments/**'
     - 'config/puma.rb'
+    - 'config/initializers/devise.rb'
+    - 'config/initializers/devise_token_auth.rb'
 
 Metrics/BlockLength:
   IgnoredMethods: ['describe', 'context', 'feature', 'scenario', 'let']

@@ -1,4 +1,6 @@
 class Api::V1::BookingsController < ApplicationController
+  before_action :authenticate_api_user!
+
   def index
     find_bookings(params)
 

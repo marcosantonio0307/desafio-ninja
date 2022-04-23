@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::BookingsController, type: :controller do
+  before(:each) do
+    login_user
+  end
+
   describe 'GET index' do
     before(:each) do
       Room.create(name: 'teste')
